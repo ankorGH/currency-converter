@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="main" class="columns is-mobile is-multiline is-centered">
+            <div class="column is-narrow">
+                <form id="form__converter">
+                    <div class="field">
+                        <label class="label">Amount</label>
+                        <div class="control">
+                            <input class="input is-rounded" type="text" placeholder="Enter Amount" name="amount" id="useramount">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">From</label>
+                        <div class="control">
+                            <div class="select is-rounded is-loading">
+                                <select id="from">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">To</label>
+                        <div class="control">
+                            <div class="select is-rounded is-loading">
+                                <select id="to">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button is-info" type="submit">Convert</button>
+                </form>
+            </div>
+            <div class="column is-one-third" style="margin-top: 30px;">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title" id="answer">
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/assets/js/main.js"></script>
+
+</html>
