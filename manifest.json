@@ -1,0 +1,16 @@
+{
+  "short_name": "Sika",
+  "name": "Sika - Currency Converter",
+  "icons": [
+    {
+      "src": "/assets/imgs/icons.png",
+      "type": "image/png",
+      "sizes": "64x64 192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#700F79"
+}
