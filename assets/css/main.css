@@ -4,4 +4,28 @@
 
 html {
   background-color: rgba(255, 252, 252, 0.9);
+  background-image: url("/assets/imgs/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+html .label {
+  color: #fff;
+}
+
+body div.container {
+  background-color: rgba(128, 0, 128, 0.8);
+  padding: 10px 0px 30px 0;
+  height: 60vh;
+  margin-top: 20vh;
+}
+
+form {
+  margin-top: -60px;
+}
+#answer {
+  color: #fff;
+  border: 1px dashed #ffffff;
+  padding: 20px 10px;
 }
