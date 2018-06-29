@@ -7,8 +7,8 @@ const resourceTocache = [
   "/currency-converter/index.html",
   "/currency-converter/assets/css/main.css",
   "/currency-converter/assets/js/main.js",
-  "/currency-converter/assets/imgs/bg.jpg",
-  "/currency-converter/assets/imgs/icons.png",
+  "https://res.cloudinary.com/devlesscloud/image/upload/v1530288299/bg_ltrull.jpg",
+  "https://res.cloudinary.com/devlesscloud/image/upload/v1530288295/icons_ku0qhz.png",
   "/currency-converter/manifest.json",
   "/currency-converter/assets/js/idb.js",
   "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"

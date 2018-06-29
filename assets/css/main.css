@@ -4,7 +4,7 @@
 
 html {
   background-color: rgba(255, 252, 252, 0.9);
-  background-image: url("/currency-converter/assets/imgs/bg.jpg");
+  background-image: url("https://res.cloudinary.com/devlesscloud/image/upload/v1530288299/bg_ltrull.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
