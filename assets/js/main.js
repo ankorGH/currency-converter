@@ -1,5 +1,7 @@
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/currency-converter/sw.js");
+  navigator.serviceWorker.register("/currency-converter/sw.js", {
+    scope: "/currency-converter/"
+  });
 }
 
 const dbPromise = idb.open("conversion-store", 1, upgradeDB => {
