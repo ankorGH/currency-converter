@@ -1,15 +1,16 @@
 const CACHE = {
-  STATIC: "static-cache-v4",
-  DYNAMIC: "dynamic-cache-v3"
+  STATIC: "static-cache-v9"
 };
 
 const resourceTocache = [
   "/",
   "/assets/css/main.css",
   "/assets/js/main.js",
+  "/assets/imgs/bg.jpg",
+  "/assets/imgs/icons.png",
+  "/manifest.json",
   "/assets/js/idb.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css",
-  "https://free.currencyconverterapi.com/api/v5/currencies"
+  "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
 ];
 
 self.addEventListener("install", event => {
@@ -35,7 +36,14 @@ self.addEventListener("activate", function(event) {
 });
 
 self.addEventListener("fetch", function(event) {
-  if (event.request.url.indexOf("/convert") === -1) {
+  if (event.request.url.indexOf("/currencies") > 1) {
+    event.respondWith(fetch(event.request));
+  }
+  let url = new URL(event.request.url);
+  if (
+    resourceTocache.includes(url.pathname) ||
+    resourceTocache.includes(event.request.url)
+  ) {
     event.respondWith(respondFromCache(event.request));
   }
 });
