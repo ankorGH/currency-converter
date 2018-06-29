@@ -1,4 +1,41 @@
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js");
+}
+
+const dbPromise = idb.open("conversion-store", 1, upgradeDB => {
+  switch (upgradeDB.oldVersion) {
+    case 0:
+      upgradeDB.createObjectStore("convert");
+    case 1:
+      upgradeDB.createObjectStore("currencies");
+  }
+});
+
+function addData(store, data, key) {
+  dbPromise.then(db => {
+    const tx = db.transaction(store, "readwrite");
+    const st = tx.objectStore(store);
+    st.put(data, key);
+    return tx.complete;
+  });
+}
+
+function getDataByKey(store, key) {
+  return dbPromise.then(db => {
+    return db
+      .transaction(store)
+      .objectStore(store)
+      .get(key);
+  });
+}
+
+fetchCountries();
+
+const form = document.getElementById("form__converter");
+form.addEventListener("submit", convertCurrency);
+
 function fetchCountries() {
+  let networkResponse = false;
   fetch("https://free.currencyconverterapi.com/api/v5/currencies")
     .then(res => {
       if (res.ok) {
@@ -6,31 +43,28 @@ function fetchCountries() {
       }
     })
     .then(res => {
+      networkResponse = true;
       const { results } = res;
       updateCountries(results, "from");
       updateCountries(results, "to");
-    });
-}
+      return results;
+    })
+    .then(res => {
+      addData("currencies", res, "cur");
+    })
+    .catch(() => {});
 
-function updateCountries(results, selectID) {
-  let select = document.getElementById(selectID);
-  for (const val in results) {
-    let option = document.createElement("option");
-    let text = document.createTextNode(results[val].currencyName);
-    let value = document.createAttribute("value");
-    value.value = val;
-    option.setAttributeNode(value);
-    option.appendChild(text);
-    select.appendChild(option);
-  }
-  select.parentElement.className = "select is-rounded";
+  getDataByKey("currencies", "cur").then(data => {
+    if (!networkResponse && data !== undefined) {
+      updateCountries(data, "from");
+      updateCountries(data, "to");
+    }
+  });
 }
-
-const form = document.getElementById("form__converter");
-form.addEventListener("submit", convertCurrency);
 
 function convertCurrency(e) {
   e.preventDefault();
+
   document.getElementById("answer").value = "";
   const from = document.getElementById("from").value;
   const to = document.getElementById("to").value;
@@ -55,41 +89,26 @@ function convertCurrency(e) {
       })
       .catch(() => {
         getDataByKey("convert", key).then(res => {
-          console.log(res);
-          document.querySelector("#answer").textContent = res * amount;
+          if (res !== undefined) {
+            document.querySelector("#answer").textContent = res * amount;
+          }
         });
-        console.log();
       });
   }
 }
 
-fetchCountries();
+function updateCountries(results, selectID) {
+  let select = document.getElementById(selectID);
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js");
-}
-
-const dbPromise = idb.open("conversion-store", 1, upgradeDB => {
-  switch (upgradeDB.oldVersion) {
-    case 0:
-      upgradeDB.createObjectStore("convert");
+  for (const val in results) {
+    let option = document.createElement("option");
+    let text = document.createTextNode(results[val].currencyName);
+    let value = document.createAttribute("value");
+    value.value = val;
+    option.setAttributeNode(value);
+    option.appendChild(text);
+    select.appendChild(option);
   }
-});
 
-function addConvert(store, data, key) {
-  dbPromise.then(db => {
-    const tx = db.transaction(store, "readwrite");
-    const st = tx.objectStore(store);
-    st.put(data, key);
-    return tx.complete;
-  });
-}
-
-function getDataByKey(store, key) {
-  return dbPromise.then(db => {
-    return db
-      .transaction(store)
-      .objectStore(store)
-      .get(key);
-  });
+  select.parentElement.className = "select is-rounded";
 }
