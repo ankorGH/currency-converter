@@ -3,7 +3,7 @@
   "name": "Sika - Currency Converter",
   "icons": [
     {
-      "src": "/assets/imgs/icons.png",
+      "src": "/currency-converter/assets/imgs/icons.png",
       "type": "image/png",
       "sizes": "64x64 192x192 512x512"
     }
