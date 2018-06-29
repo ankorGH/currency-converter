@@ -4,12 +4,12 @@ const CACHE = {
 
 const resourceTocache = [
   "/",
-  "/assets/css/main.css",
-  "/assets/js/main.js",
-  "/assets/imgs/bg.jpg",
-  "/assets/imgs/icons.png",
-  "/manifest.json",
-  "/assets/js/idb.js",
+  "/currency-converter/assets/css/main.css",
+  "/currency-converter/assets/js/main.js",
+  "/currency-converter/assets/imgs/bg.jpg",
+  "/currency-converter/assets/imgs/icons.png",
+  "/currency-converter/manifest.json",
+  "/currency-converter/assets/js/idb.js",
   "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
 ];
 
