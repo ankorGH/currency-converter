@@ -1,5 +1,5 @@
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js");
+  navigator.serviceWorker.register("/currency-converter/sw.js");
 }
 
 const dbPromise = idb.open("conversion-store", 1, upgradeDB => {
