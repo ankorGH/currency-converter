@@ -4,6 +4,7 @@ const CACHE = {
 
 const resourceTocache = [
   "/",
+  "/currency-converter/index.html",
   "/currency-converter/assets/css/main.css",
   "/currency-converter/assets/js/main.js",
   "/currency-converter/assets/imgs/bg.jpg",
